@@ -14,5 +14,11 @@ public class BinarySearchTree {
         }
     }
 
+    private Node root;
+
+    public BinarySearchTree() {
+        this.root = null;
+    }
+
 
 }
