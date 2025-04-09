@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserInputController {
 
-    private final BinarySearchTree bst;
+    private BinarySearchTree bst;
 
     // initialize the BST
-    public UserInputController {
+    public UserInputController() {
         this.bst = new BinarySearchTree();
     }
 
