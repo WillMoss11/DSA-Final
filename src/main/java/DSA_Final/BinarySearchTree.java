@@ -43,5 +43,12 @@ public class BinarySearchTree {
         return root;
     }
 
+    // To represent the tree as a string
+    public String inorder() {
+        StringBuilder sb = new StringBuilder();
+        inorderRec(root, sb);
+        return sb.toString();
+    }
+
 
 }
