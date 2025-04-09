@@ -31,5 +31,12 @@ public class UserInputController {
             int num = Integer.parseInt(numStr.trim());
             bst.insert(num);
         }
+
+        // get the in order of the tree to display
+        String bstResult = bst.inorder();
+        model.addAttribute("bstResult", bstResult);
+
+        // return the result
+        return "bst-result";
     }
 }
