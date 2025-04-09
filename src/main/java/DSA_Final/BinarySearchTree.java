@@ -50,5 +50,12 @@ public class BinarySearchTree {
         return sb.toString();
     }
 
-
+    // To perform in order movement of the tree
+    private void inorderRec(Node root, StringBuilder sb) {
+        if (root != null) {
+            inorderRec(root.left, sb);
+            sb.append(root.data).append(" ");
+            inorderRec(root.right, sb);
+        }
+    }
 }
