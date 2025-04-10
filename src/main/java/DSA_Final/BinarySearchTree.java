@@ -2,7 +2,7 @@ package DSA_Final;
 
 public class BinarySearchTree {
 
-    // Node class for each element in the tree
+    // a node class for each element in the tree
     static class Node {
         int data;
         Node left, right;
@@ -20,12 +20,12 @@ public class BinarySearchTree {
         this.root = null;
     }
 
-    // To insert a new value into the BST
+    // insert a new value into the BST
     public void insert(int data) {
         root = insertRec(root, data);
     }
 
-    // To insert a value in the tree
+    // insert a value in the tree
     private Node insertRec(Node root, int data) {
         // If the tree is empty, return a new node
         if (root == null) {
@@ -43,14 +43,15 @@ public class BinarySearchTree {
         return root;
     }
 
-    // To represent the tree as a string
+    // show the tree as a string with comma-separated values (ta-da)
     public String inorder() {
         StringBuilder sb = new StringBuilder();
         inorderRec(root, sb);
-        return sb.toString();
+        // remove the trailing space and return the string with commas
+        return sb.toString().trim().replace(" ", ",");
     }
 
-    // To perform in order movement of the tree
+    // perform in-order numbers of the tree
     private void inorderRec(Node root, StringBuilder sb) {
         if (root != null) {
             inorderRec(root.left, sb);
@@ -59,3 +60,4 @@ public class BinarySearchTree {
         }
     }
 }
+
