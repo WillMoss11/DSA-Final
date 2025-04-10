@@ -48,6 +48,17 @@ public class UserInputController {
 
         return "bst-result"; // this will be the next HTML page we build
     }
+
+    @GetMapping("/previous-trees")
+    public String showPreviousTrees(Model model) {
+        // get all tree records from the database
+        Iterable<TreeRecord> allTrees = treeRecordRepository.findAll();
+
+        // Add them to the model to display
+        model.addAttribute("allTrees", allTrees);
+
+        return "previous-trees"; // This will load the previous-trees.html template
+    }
 }
 
 
