@@ -13,7 +13,7 @@ public class UserInputController {
     private final BinarySearchTree bst;
     private final TreeRecordRepository treeRecordRepository;
 
-    // Inject the repository into this controller
+    // put the repository into this controller
     @Autowired
     public UserInputController(TreeRecordRepository treeRecordRepository) {
         this.bst = new BinarySearchTree();
@@ -28,25 +28,32 @@ public class UserInputController {
 
     @PostMapping("/process-numbers")
     public String processNumbers(@RequestParam String number, Model model) {
-        // Reset the BST each time new numbers are entered
+        System.out.println("Received numbers: " + number); // did this for debugging, had problems
         BinarySearchTree freshTree = new BinarySearchTree();
 
-        // Split input by commas and throw the numbers into the tree
+        // input by commas and throw the numbers into the tree
         String[] numberStrings = number.split(",");
         for (String numStr : numberStrings) {
-            int num = Integer.parseInt(numStr.trim());
-            freshTree.insert(num);
+            try {
+                // check to see if the input is a valid number
+                int num = Integer.parseInt(numStr.trim());
+                freshTree.insert(num);
+            } catch (NumberFormatException e) {
+                // handle invalid input
+                model.addAttribute("errorMessage", "Invalid input detected. Please enter only numbers.");
+                return "enter-numbers";
+            }
         }
 
-        // Get the in-order traversal to display
+        // get the in-order numbers to display
         String bstResult = freshTree.inorder();
         model.addAttribute("bstResult", bstResult);
 
-        // Save this data to the DB like a good citizen
+        // save this data to the DB
         TreeRecord record = new TreeRecord(number, bstResult);
         treeRecordRepository.save(record);
 
-        return "bst-result"; // this will be the next HTML page we build
+        return "bst-result";
     }
 
     @GetMapping("/previous-trees")
@@ -54,11 +61,12 @@ public class UserInputController {
         // get all tree records from the database
         Iterable<TreeRecord> allTrees = treeRecordRepository.findAll();
 
-        // Add them to the model to display
+        // add them to the model to display
         model.addAttribute("allTrees", allTrees);
 
-        return "previous-trees"; // This will load the previous-trees.html template
+        return "previous-trees";
     }
 }
+
 
 
