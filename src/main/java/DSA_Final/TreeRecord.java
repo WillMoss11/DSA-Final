@@ -14,5 +14,30 @@ public class TreeRecord {
     private String bstResult;
 
     // default
+    public TreeRecord() {}
 
+    public TreeRecord(String inputNumbers, String bstResult) {
+        this.inputNumbers = inputNumbers;
+        this.bstResult = bstResult;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getInputNumbers() {
+        return inputNumbers;
+    }
+
+    public String getBstResult() {
+        return bstResult;
+    }
+
+    public void setInputNumbers(String inputNumbers) {
+        this.inputNumbers = inputNumbers;
+    }
+
+    public void setBstResult(String bstResult) {
+        this.bstResult = bstResult;
+    }
 }
