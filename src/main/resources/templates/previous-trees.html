@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previous Trees</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Previous Binary Search Trees</h1>
@@ -11,7 +12,7 @@
 <p>Here are the trees you've created in the past:</p>
 
 <ul>
-    <!-- Loop through all trees and display the input numbers and the BST result -->
+    <!-- go through all trees and display the input numbers and the bst result -->
     <th:block th:each="tree : ${allTrees}">
         <li>
             <strong>Input Numbers:</strong> <span th:text="${tree.inputNumbers}"></span><br>
@@ -21,7 +22,12 @@
 </ul>
 
 <br>
-<a href="/enter-numbers">Enter more numbers</a><br>
-<a href="/">Home</a>
+
+<a href="/enter-numbers" class="button">Enter more numbers</a><br>
+
 </body>
 </html>
+
+
+
+

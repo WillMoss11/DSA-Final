@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BST Result</title>
+    <title>Binary Search Tree Result</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Binary Search Tree Result</h1>
+<p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></p>
 
-<p>The tree has been successfully created from your numbers!</p>
+<div class="result-box">
+    <p>In-order Traversal: <span th:text="${bstResult}"></span></p>
+</div>
 
-<h3>In-order Traversal:</h3>
-<p>${bstResult}</p>
+<form action="/enter-numbers" method="get">
+    <button type="submit">Enter More Numbers</button>
+</form>
 
-<br>
-<a href="/enter-numbers">Enter more numbers</a><br>
-<a href="/previous-trees">Show Previous Trees</a>
 </body>
 </html>
+
+
+
+
+
+
