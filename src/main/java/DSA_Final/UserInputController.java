@@ -1,58 +1,53 @@
 package DSA_Final;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class UserInputController {
 
-    private BinarySearchTree bst;
+    private final BinarySearchTree bst;
+    private final TreeRecordRepository treeRecordRepository;
 
-    // Setting up the binary search tree
-    public UserInputController() {
+    // Inject the repository into this controller
+    @Autowired
+    public UserInputController(TreeRecordRepository treeRecordRepository) {
         this.bst = new BinarySearchTree();
+        this.treeRecordRepository = treeRecordRepository;
     }
 
-    // Show the input page to the user
     @GetMapping("/enter-numbers")
     public String showEnterNumbersPage(Model model) {
         model.addAttribute("message", "Enter your numbers to create a binary search tree");
-        return "enter-numbers";
+        return "enter-numbers"; // loads templates/enter-numbers.html
     }
 
-    // Handle the form submission and build the BST
     @PostMapping("/process-numbers")
-    public String processNumbers(@RequestParam("numbers") String numberInput, Model model) {
-        String[] numberStrings = numberInput.split(",");
-        List<Integer> numbers = new ArrayList<>();
+    public String processNumbers(@RequestParam String number, Model model) {
+        // Reset the BST each time new numbers are entered
+        BinarySearchTree freshTree = new BinarySearchTree();
 
-        try {
-            // to parse every number
-            for (String numStr : numberStrings) {
-                numbers.add(Integer.parseInt(numStr.trim()));
-            }
-
-            // Insert the numbers into our precious BST
-            for (int num : numbers) {
-                bst.insert(num);
-            }
-
-            // just a little confirmation message
-            model.addAttribute("message", "BST created successfully! Here's the in-order traversal:");
-            model.addAttribute("bstResult", bst.inorder());
-
-        } catch (NumberFormatException e) {
-            model.addAttribute("message", "Oops! Make sure you're only entering numbers separated by commas.");
+        // Split input by commas and throw the numbers into the tree
+        String[] numberStrings = number.split(",");
+        for (String numStr : numberStrings) {
+            int num = Integer.parseInt(numStr.trim());
+            freshTree.insert(num);
         }
 
+        // Get the in-order traversal to display
+        String bstResult = freshTree.inorder();
+        model.addAttribute("bstResult", bstResult);
 
-        return "enter-numbers";
+        // Save this data to the DB like a good citizen
+        TreeRecord record = new TreeRecord(number, bstResult);
+        treeRecordRepository.save(record);
+
+        return "bst-result"; // this will be the next HTML page we build
     }
 }
+
 
