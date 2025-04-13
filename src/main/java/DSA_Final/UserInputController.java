@@ -20,6 +20,11 @@ public class UserInputController {
         this.treeRecordRepository = treeRecordRepository;
     }
 
+    @GetMapping("/")
+    public String showHomePage() {
+        return "home"; // loads templates/home.html
+    }
+
     @GetMapping("/enter-numbers")
     public String showEnterNumbersPage(Model model) {
         model.addAttribute("message", "Enter your numbers to create a binary search tree");

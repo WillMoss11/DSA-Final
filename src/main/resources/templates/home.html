@@ -7,17 +7,20 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<h1>Welcome to the Binary Search Tree App</h1>
-<p>What would you like to do?</p>
+<div class="homepage-container">
+    <h1>Welcome to the Binary Search Tree App</h1>
+    <p>What would you like to do?</p>
 
-<form action="/enter-numbers" method="get">
-    <button type="submit">Create New Tree</button>
-</form>
+    <div class="homepage-buttons">
+        <form action="/enter-numbers" method="get">
+            <button type="submit" class="button">Create New Tree</button>
+        </form>
 
-<br>
-
-<form action="/previous-trees" method="get">
-    <button type="submit">View Previous Trees</button>
-</form>
+        <form action="/previous-trees" method="get">
+            <button type="submit" class="button">View Previous Trees</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
+
