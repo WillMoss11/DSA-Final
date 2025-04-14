@@ -133,6 +133,40 @@ strong {
     }
 }
 
+.json-tree {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.json-tree span {
+    color: #8b8b8b; /* Grey for keys */
+}
+
+.json-tree .key {
+    color: #2b8f6f; /* Green for keys */
+}
+
+.json-tree .value {
+    color: #d84a38; /* Red for values */
+}
+
+.json-tree .null {
+    color: #e5a00d; /* Yellow for null values */
+}
+
+.json-tree .brace {
+    color: #6a1b9a; /* Purple for braces */
+}
+
 .result-box {
     padding: 20px;
     margin: 20px 0;
