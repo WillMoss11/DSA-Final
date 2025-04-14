@@ -8,24 +8,34 @@
 </head>
 <body>
 <h1>Binary Search Tree Result</h1>
+
 <p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></p>
 
 <div class="result-box">
-    <p>In-order Traversal: <span th:text="${bstResult}"></span></p>
+    <h2>In-Order Traversal:</h2>
+    <pre th:text="${bstResult}"></pre>
 </div>
+
+<div class="result-box">
+    <h2>Tree Structure (JSON):</h2>
+    <!-- Added class "json-box" for styling -->
+    <pre class="json-tree" th:text="${jsonTreeResult}"></pre> <!-- This will display the JSON as a formatted string -->
+</div>
+
+<br>
 
 <form action="/enter-numbers" method="get">
     <button type="submit">Enter More Numbers</button>
 </form>
 
-<br>
-
-<form action="/" method="get">
-    <button type="submit">Home</button>
-</form>
-
 </body>
 </html>
+
+
+
+
+
+
 
 
 
