@@ -12,7 +12,6 @@
 <p>Here are the trees you've created in the past:</p>
 
 <ul>
-    <!-- go through all trees and display the input numbers and the bst result -->
     <th:block th:each="tree : ${allTrees}">
         <li>
             <strong>Input Numbers:</strong> <span th:text="${tree.inputNumbers}"></span><br>

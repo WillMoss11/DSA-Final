@@ -51,7 +51,7 @@ public class BinarySearchTree {
         return sb.toString().trim().replace(" ", ",");
     }
 
-    // perform in-order traversal of the tree
+    // perform in-order of the tree
     private void inorderRec(Node root, StringBuilder sb) {
         if (root != null) {
             inorderRec(root.left, sb);
@@ -65,20 +65,20 @@ public class BinarySearchTree {
         return toJsonHelper(root);
     }
 
-    // helper method for recursive conversion to JSON-like format
+    // helper conversion to JSON-like format
     private String toJsonHelper(Node node) {
         return toJsonHelper(node, 0); // Pass the indentation level (initially 0)
     }
 
-    // Recursive helper method with indentation
+    // helper method with indentation
     private String toJsonHelper(Node node, int level) {
         if (node == null) {
             return "null";
         }
 
         String indent = "  ".repeat(level); // Indentation for current level
-        String left = toJsonHelper(node.left, level + 1); // Recursively get left child
-        String right = toJsonHelper(node.right, level + 1); // Recursively get right child
+        String left = toJsonHelper(node.left, level + 1); // get left child
+        String right = toJsonHelper(node.right, level + 1); // get right child
 
         return String.format("%s{ \"value\": %d,\n%s  \"left\": %s,\n%s  \"right\": %s\n%s}",
                 indent, node.data, indent, left, indent, right, indent);

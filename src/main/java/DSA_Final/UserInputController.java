@@ -22,13 +22,13 @@ public class UserInputController {
 
     @GetMapping("/")
     public String showHomePage() {
-        return "home"; // loads templates/home.html
+        return "home";
     }
 
     @GetMapping("/enter-numbers")
     public String showEnterNumbersPage(Model model) {
         model.addAttribute("message", "Enter your numbers to create a binary search tree");
-        return "enter-numbers"; // loads templates/enter-numbers.html
+        return "enter-numbers";
     }
 
     @PostMapping("/process-numbers")
