@@ -54,6 +54,10 @@ public class UserInputController {
         String bstResult = freshTree.inorder();
         model.addAttribute("bstResult", bstResult);
 
+        // get the tree's JSON-like representation
+        String jsonTree = freshTree.toJson();
+        model.addAttribute("jsonTreeResult", jsonTree);
+
         // save this data to the DB
         TreeRecord record = new TreeRecord(number, bstResult);
         treeRecordRepository.save(record);
@@ -72,6 +76,7 @@ public class UserInputController {
         return "previous-trees";
     }
 }
+
 
 
 
